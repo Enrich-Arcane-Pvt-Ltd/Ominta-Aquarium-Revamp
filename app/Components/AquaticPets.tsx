@@ -34,7 +34,7 @@ export default function AquaticPets() {
             <p className="text-2xl font-bold text-primary-400">$19.99</p>
           </div>
 
-          {/* CARD 2 */}
+          
           <div className="group cursor-pointer text-center hover:shadow-xl">
             <div className="relative overflow-hidden rounded-lg mb-6 bg-accent-300 h-[300px]">
               <Image
@@ -57,7 +57,7 @@ export default function AquaticPets() {
             <p className="text-2xl font-bold text-primary-400">$24.99</p>
           </div>
 
-          {/* CARD 3 */}
+          
           <div className="group cursor-pointer text-center hover:shadow-xl">
             <div className="relative overflow-hidden rounded-lg mb-6 bg-accent-300 h-[300px]">
               <Image
@@ -80,7 +80,7 @@ export default function AquaticPets() {
             <p className="text-2xl font-bold text-primary-400">$22.99</p>
           </div>
 
-          {/* CARD 4 */}
+          
           <div className="group cursor-pointer text-center hover:shadow-xl">
             <div className="relative overflow-hidden rounded-lg mb-6 bg-accent-300 h-[300px]">
               <Image

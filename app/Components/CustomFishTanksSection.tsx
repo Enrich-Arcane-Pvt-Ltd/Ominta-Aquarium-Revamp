@@ -7,7 +7,7 @@ const CustomFishTanksSection = () => {
     <section
       className="relative py-24 md:py-40 text-white bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/images/img10.jpg')",
+        backgroundImage: "url('/Images/img10.jpg')",
       }}
     >
       <div className="absolute inset-0 bg-[#000000]/70"></div>
