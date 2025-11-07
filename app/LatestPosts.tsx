@@ -26,6 +26,13 @@ const LatestPosts: React.FC = () => {
       description:
         "Our service covers all types of aquariums — from cold water to tropical, freshwater, and marine fish-only systems.",
     },
+    {
+      image: "/images/img8.jpg",
+      date: "Dec 28, 2016",
+      title: "Looking for aquarium specialists?",
+      description:
+        "Are you looking for equipment for your aquarium? Look no further than AquaPro. We stock all aspects of aquarium equipment.",
+    },
   ];
 
   return (
@@ -35,8 +42,7 @@ const LatestPosts: React.FC = () => {
         <h2 className="text-4xl font-bold text-gray-800 mb-2">Latest Posts</h2>
         <div className="text-cyan-600 text-3xl mb-12">~</div>
 
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {posts.map((post, index) => (
             <div
               key={index}
