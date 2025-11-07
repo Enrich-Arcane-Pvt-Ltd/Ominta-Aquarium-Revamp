@@ -17,21 +17,19 @@ import AboutPage from "./Components/AboutPage";
 
 const Home: React.FC = () => {
   return (
-    <>
-      {/* <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <OurServices />
-      <LatestPosts />
-      <CustomFishTanksSection />
-      <ClientsAboutUs/>
-      <OurTeam/>
-      <AquaticPets/>  */}
-      {/* <Gallery/> */}
-      {/* <ContactSection/> */}
-      <AboutPage />
-      {/* <Footer /> */}
-    </>
+    <div>
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <OurServices />
+        <LatestPosts />
+        <CustomFishTanksSection />
+        <ClientsAboutUs/>
+        <OurTeam/>
+        <AquaticPets/> 
+        <Gallery/>
+      </main>
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@
 import { Menu, PhoneCall, Search, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -37,9 +38,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("home")}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
+            <Link href="/" className="hover:text-cyan-400 transition-colors">
               Home
-            </a>
+            </Link>
           </li>
 
           <li
@@ -47,9 +48,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("about")}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
               About Us
-            </a>
+            </Link>
           </li>
 
           <li>
@@ -88,10 +89,14 @@ const Navbar = () => {
             </a>
           </li>
 
-          <li>
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Contact
-            </a>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("blog")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Link href="/contact" className="hover:text-cyan-400 transition-colors">
+              Contact Us
+            </Link>
           </li>
         </ul>
 
