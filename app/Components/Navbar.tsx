@@ -134,9 +134,9 @@ const Navbar = () => {
             </li>
 
             <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link href="/about" className="block px-6 py-3 hover:bg-[#2a2a2a]">
                 About Us
-              </a>
+              </Link>
             </li>
 
             <li className="border-b border-gray-700">
@@ -164,9 +164,9 @@ const Navbar = () => {
             </li>
 
             <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link href="/contact" className="block px-6 py-3 hover:bg-[#2a2a2a]">
                 Contact
-              </a>
+              </Link>
             </li>
 
             <li className="md:hidden">
