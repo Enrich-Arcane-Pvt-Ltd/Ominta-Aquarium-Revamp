@@ -9,6 +9,10 @@ import OurServices from "./Components/OurServicesSection";
 import LatestPosts from "./LatestPosts";
 import CustomFishTanksSection from "./Components/CustomFishTanksSection";
 import SidebarIcons from "./Components/SidebarIcons";
+import ClientsAboutUs from "./Components/ClientsAboutUs";
+import OurTeam from "./Components/OurTeam";
+import AquaticPets from "./Components/AquaticPets";
+import Gallery from "./Components/Gallery";
 
 const Home: React.FC = () => {
   return (
@@ -20,6 +24,10 @@ const Home: React.FC = () => {
       <LatestPosts />
       <CustomFishTanksSection />
       <SidebarIcons />
+      <ClientsAboutUs/>
+      <OurTeam/>
+      <AquaticPets/> 
+      <Gallery/>
       <Footer />
     </>
   );
