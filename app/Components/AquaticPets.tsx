@@ -5,28 +5,28 @@ export default function AquaticPets() {
   const pets = [
     {
       name: "Siamese Fighting Fish (Betta)",
-      image: "/images/fish2.png",
+      image: "/Images/fish2.png",
       description:
         "A vibrant freshwater fish known for its flowing fins and bold personality.",
       price: "$19.99",
     },
     {
       name: "Neon Tetra",
-      image: "/images/fish.jpg",
+      image: "/Images/fish.jpg",
       description:
         "A small, peaceful schooling fish with dazzling neon blue and red stripes.",
       price: "$7.99",
     },
     {
       name: "Clown Fish",
-      image: "/images/fish3.jpg",
+      image: "/Images/fish3.jpg",
       description:
         "Famous for their symbiotic relationship with sea anemones, these fish are colorful and friendly.",
       price: "$29.99",
     },
     {
       name: "Angelfish",
-      image: "/images/OIP.jpg",
+      image: "/Images/OIP.jpg",
       description:
         "A graceful freshwater species admired for its tall fins and calm temperament.",
       price: "$24.99",

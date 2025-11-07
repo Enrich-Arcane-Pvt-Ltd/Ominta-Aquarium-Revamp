@@ -11,7 +11,7 @@ export default function ClientsAboutUs() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
           <div className="md:col-span-2">
             <Image
-              src="/images/Hero.jpg"
+              src="/Images/Hero.jpg"
               alt="Fish 1"
               width={465}
               height={230}
@@ -31,21 +31,21 @@ export default function ClientsAboutUs() {
             </p>
           </div>
           <Image
-            src="/images/About-01.jpg"
+            src="/Images/About-01.jpg"
             alt="Fish 2"
             width={235}
             height={235}
             className="w-full aspect-square object-cover"
           />
           <Image
-            src="/images/fish2.png"
+            src="/Images/fish2.png"
             alt="Fish 3"
             width={235}
             height={235}
             className="w-full aspect-square object-cover"
           />
           <Image
-            src="/images/About-05.jpg"
+            src="/Images/About-05.jpg"
             alt="Fish 4"
             width={235}
             height={235}
@@ -61,7 +61,7 @@ export default function ClientsAboutUs() {
           </div>
           <div>
             <Image
-              src="/images/About-06.jpg"
+              src="/Images/About-06.jpg"
               alt="Aquarium"
               width={235}
               height={235}

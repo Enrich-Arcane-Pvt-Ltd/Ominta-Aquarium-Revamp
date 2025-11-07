@@ -8,7 +8,7 @@ export default function OurTeam() {
     {
       name: "Victoria Black",
       role: "Chief Executive Officer",
-      image: "/images/office-worker-3.jpg",
+      image: "/Images/office-worker-3.jpg",
       bio: "Victoria brings over 15 years of leadership in the aquarium design industry. Her vision for innovation and dedication to client satisfaction have positioned Ominta-Aquarium as a market leader in luxury aquatic environments.",
       social: {
         twitter: "https://twitter.com/",
@@ -19,7 +19,7 @@ export default function OurTeam() {
     {
       name: "Lora Stewart",
       role: "Marketing Director",
-      image: "/images/ai-generative-head-photo.jpg",
+      image: "/Images/ai-generative-head-photo.jpg",
       bio: "Lora is responsible for brand strategy and client engagement. With a strong background in digital marketing and visual storytelling, she ensures that Ominta-Aquarium’s creativity reaches a global audience.",
       social: {
         twitter: "https://twitter.com/",
@@ -30,7 +30,7 @@ export default function OurTeam() {
   ];
 
   return (
-    <section className="relative w-full py-16 md:py-24 bg-[url('/images/About-03.jpg')] bg-cover bg-center">
+    <section className="relative w-full py-16 md:py-24 bg-[url('/Images/About-03.jpg')] bg-cover bg-center">
       <div className="absolute inset-0 bg-black/70"></div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

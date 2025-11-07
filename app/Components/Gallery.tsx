@@ -19,12 +19,12 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
   const galleryItems: GalleryItem[] = [
-    { id: 1, src: "/images/747435.jpg", alt: "Fish Close-up" },
-    { id: 2, src: "/images/Aquarium-Water.jpg", alt: "Wall Aquarium" },
-    { id: 3, src: "/images/beautiful-tropical-fish.jpg", alt: "Living Room Aquarium" },
-    { id: 4, src: "/images/fish2.png", alt: "Planted Aquarium" },
-    { id: 5, src: "/images/fish.jpg", alt: "Goldfish Tank" },
-    { id: 6, src: "/images/OIP.jpg", alt: "Discus Fish" },
+    { id: 1, src: "/Images/747435.jpg", alt: "Fish Close-up" },
+    { id: 2, src: "/Images/Aquarium-Water.jpg", alt: "Wall Aquarium" },
+    { id: 3, src: "/Images/beautiful-tropical-fish.jpg", alt: "Living Room Aquarium" },
+    { id: 4, src: "/Images/fish2.png", alt: "Planted Aquarium" },
+    { id: 5, src: "/Images/fish.jpg", alt: "Goldfish Tank" },
+    { id: 6, src: "/Images/OIP.jpg", alt: "Discus Fish" },
   ];
 
   const openLightbox = (item: GalleryItem) => setSelectedImage(item);
@@ -49,7 +49,7 @@ export default function Gallery() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/images/Back.jpg"
+          src="/Images/Back.jpg"
           alt="Background"
           fill
           className="object-cover"
