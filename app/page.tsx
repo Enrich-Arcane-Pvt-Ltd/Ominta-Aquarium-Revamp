@@ -8,7 +8,6 @@ import Footer from "./Components/Footer";
 import OurServices from "./Components/OurServicesSection";
 import LatestPosts from "./LatestPosts";
 import CustomFishTanksSection from "./Components/CustomFishTanksSection";
-import SidebarIcons from "./Components/SidebarIcons";
 import ClientsAboutUs from "./Components/ClientsAboutUs";
 import OurTeam from "./Components/OurTeam";
 import AquaticPets from "./Components/AquaticPets";
@@ -23,7 +22,6 @@ const Home: React.FC = () => {
       <OurServices />
       <LatestPosts />
       <CustomFishTanksSection />
-      <SidebarIcons />
       <ClientsAboutUs/>
       <OurTeam/>
       <AquaticPets/> 
