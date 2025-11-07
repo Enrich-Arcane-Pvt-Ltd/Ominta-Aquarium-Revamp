@@ -1,18 +1,28 @@
-import AquaticPets from "./Components/AquaticPets";
-import ClientsAboutUs from "./Components/ClientsAboutUs";
+"use client";
+
+import React from "react";
+import Navbar from "./Components/Navbar";
+import HeroSection from "./Components/HeroSection";
+import ServicesSection from "./Components/ServiceSection";
 import Footer from "./Components/Footer";
-import Gallery from "./Components/Gallery";
-import OurTeam from "./Components/OurTeam";
+import OurServices from "./Components/OurServicesSection";
+import LatestPosts from "./LatestPosts";
+import CustomFishTanksSection from "./Components/CustomFishTanksSection";
+import SidebarIcons from "./Components/SidebarIcons";
 
-
-export default function Home() {
+const Home: React.FC = () => {
   return (
-   <div>
-    <ClientsAboutUs/>
-    <OurTeam/>
-     <AquaticPets/> 
-    <Gallery/>
-     <Footer/> 
-   </div>
+    <>
+      <Navbar />
+      <HeroSection />
+      <ServicesSection />
+      <OurServices />
+      <LatestPosts />
+      <CustomFishTanksSection />
+      <SidebarIcons />
+      <Footer />
+    </>
   );
-}
+};
+
+export default Home;
