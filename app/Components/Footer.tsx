@@ -1,4 +1,4 @@
-import { Phone, MapPin, Mail } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -9,26 +9,31 @@ export default function Footer() {
           <div>
             <h3 className="text-light-100 text-xl font-bold mb-4">About Us</h3>
             <p className="text-accent-400 leading-relaxed">
-              AquaPro prides itself on their depth of knowledge, quality of
-              service, and a tailored approach to luxury aquarium design.
+              Ominta-Aquarium prides itself on their depth of knowledge, quality
+              of service, and a tailored approach to luxury aquarium design.
             </p>
           </div>
 
           <div>
             <h3 className="text-light-100 text-xl font-bold mb-4">Links</h3>
             <ul className="space-y-2">
-              {["Home", "About Us", "Aquarium Services", "Gallery", "Blog", "Contact"].map(
-                (link, index) => (
-                  <li key={index}>
-                    <Link
-                      href="#"
-                      className="text-primary-400 hover:text-primary-300 transition-colors"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                )
-              )}
+              {[
+                "Home",
+                "About Us",
+                "Aquarium Services",
+                "Gallery",
+                "Blog",
+                "Contact",
+              ].map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href="#"
+                    className="text-primary-400 hover:text-primary-300 transition-colors"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -70,18 +75,22 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-light-100 text-xl font-bold mb-4">Recent Posts</h3>
+            <h3 className="text-light-100 text-xl font-bold mb-4">
+              Recent Posts
+            </h3>
             <ul className="space-y-3">
-              {["Standard Post", "Audio Post", "Gallery Post"].map((post, i) => (
-                <li key={i}>
-                  <Link
-                    href="#"
-                    className="text-accent-400 hover:text-primary-400 transition-colors"
-                  >
-                    {post}
-                  </Link>
-                </li>
-              ))}
+              {["Standard Post", "Audio Post", "Gallery Post"].map(
+                (post, i) => (
+                  <li key={i}>
+                    <Link
+                      href="#"
+                      className="text-accent-400 hover:text-primary-400 transition-colors"
+                    >
+                      {post}
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </div>
         </div>
@@ -95,17 +104,11 @@ export default function Footer() {
             </div>
             <div className="text-accent-400 text-sm">
               Ominta-Aquarium © 2025. All Rights Reserved.&nbsp;
-              <a
-                href="#"
-                className="hover:text-primary-400 transition-colors"
-              >
+              <a href="#" className="hover:text-primary-400 transition-colors">
                 Terms of Use
               </a>{" "}
               and{" "}
-              <a
-                href="#"
-                className="hover:text-primary-400 transition-colors"
-              >
+              <a href="#" className="hover:text-primary-400 transition-colors">
                 Privacy Policy
               </a>
             </div>

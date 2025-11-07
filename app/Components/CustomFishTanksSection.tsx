@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 
 const CustomFishTanksSection = () => {
@@ -19,11 +18,12 @@ const CustomFishTanksSection = () => {
       <div className="relative z-10 container mx-auto px-6 sm:px-8 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
         <div className="w-full md:w-1/2 text-center md:text-left">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
-            Specialists In Custom Fish Tanks, Luxury Aquarium Design, Installation And Maintenance.
+            Specialists In Custom Fish Tanks, Luxury Aquarium Design,
+            Installation And Maintenance.
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed mb-8">
-            AquaPro prides itself on their depth of knowledge, quality of service, and a tailored
-            approach to luxury aquarium design.
+            Ominta-Aquarium prides itself on their depth of knowledge, quality
+            of service, and a tailored approach to luxury aquarium design.
           </p>
           <a
             href="#portfolio"

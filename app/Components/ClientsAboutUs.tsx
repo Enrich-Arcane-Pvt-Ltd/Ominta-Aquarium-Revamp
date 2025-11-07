@@ -20,7 +20,8 @@ export default function ClientsAboutUs() {
           </div>
           <div className="md:col-span-2 bg-white p-6 flex items-center justify-center">
             <p className="text-accent-700 italic text-center text-sm sm:text-base leading-relaxed">
-              "AquaPro has been completely reliable. I'll forever be grateful for their excellent service."
+              "Ominta-Aquarium has been completely reliable. I'll forever be
+              grateful for their excellent service."
             </p>
           </div>
 
@@ -54,7 +55,8 @@ export default function ClientsAboutUs() {
           <div className="hidden md:block"></div>
           <div className="bg-white p-6 flex items-center justify-center">
             <p className="text-accent-700 italic text-center text-sm sm:text-base leading-relaxed">
-              "They made it look so easy, were professional and very knowledgeable."
+              "They made it look so easy, were professional and very
+              knowledgeable."
             </p>
           </div>
           <div>

@@ -1,7 +1,7 @@
 "use client";
 
+import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
-import { Twitter, Facebook, Instagram } from "lucide-react";
 
 export default function OurTeam() {
   const team = [
@@ -9,7 +9,7 @@ export default function OurTeam() {
       name: "Victoria Black",
       role: "Chief Executive Officer",
       image: "/images/office-worker-3.jpg",
-      bio: "Victoria brings over 15 years of leadership in the aquarium design industry. Her vision for innovation and dedication to client satisfaction have positioned AquaPro as a market leader in luxury aquatic environments.",
+      bio: "Victoria brings over 15 years of leadership in the aquarium design industry. Her vision for innovation and dedication to client satisfaction have positioned Ominta-Aquarium as a market leader in luxury aquatic environments.",
       social: {
         twitter: "https://twitter.com/",
         facebook: "https://facebook.com/",
@@ -20,7 +20,7 @@ export default function OurTeam() {
       name: "Lora Stewart",
       role: "Marketing Director",
       image: "/images/ai-generative-head-photo.jpg",
-      bio: "Lora is responsible for brand strategy and client engagement. With a strong background in digital marketing and visual storytelling, she ensures that AquaPro’s creativity reaches a global audience.",
+      bio: "Lora is responsible for brand strategy and client engagement. With a strong background in digital marketing and visual storytelling, she ensures that Ominta-Aquarium’s creativity reaches a global audience.",
       social: {
         twitter: "https://twitter.com/",
         facebook: "https://facebook.com/",
