@@ -12,22 +12,24 @@ import ClientsAboutUs from "./Components/ClientsAboutUs";
 import OurTeam from "./Components/OurTeam";
 import AquaticPets from "./Components/AquaticPets";
 import Gallery from "./Components/Gallery";
+import ContactSection from "./Components/ContactPage";
+import AboutPage from "./Components/AboutPage";
 
 const Home: React.FC = () => {
   return (
-    <>
-      <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <OurServices />
-      <LatestPosts />
-      <CustomFishTanksSection />
-      <ClientsAboutUs/>
-      <OurTeam/>
-      <AquaticPets/> 
-      <Gallery/>
-      <Footer />
-    </>
+    <div>
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <OurServices />
+        <LatestPosts />
+        <CustomFishTanksSection />
+        <ClientsAboutUs/>
+        <OurTeam/>
+        <AquaticPets/> 
+        <Gallery/>
+      </main>
+    </div>
   );
 };
 
