@@ -6,7 +6,6 @@ const HeroSection: React.FC = () => {
     <section
       className="relative h-screen bg-black flex items-center justify-center text-center overflow-hidden"
     >
-      
       <div className="absolute inset-0">
         <img
           src="/hero-bg.jpg"
@@ -15,10 +14,9 @@ const HeroSection: React.FC = () => {
         />
       </div>
 
-      
       <div className="relative z-10 text-light-100 px-4">
         <h1 className="text-5xl md:text-6xl font-bold text-primary-400 mb-6 drop-shadow-lg">
-          Welcome to AquaPro
+          Welcome to Ominta-Aquarium
         </h1>
         <p className="text-lg md:text-xl text-light-200 mb-8 max-w-2xl mx-auto">
           Your trusted partner in aquarium design, installation, and maintenance.
