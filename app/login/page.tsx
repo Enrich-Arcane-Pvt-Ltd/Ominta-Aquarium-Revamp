@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import getFriendlyFirebaseError from "../utils/firebaseErrors";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("admin1@enricharcane.com");
@@ -18,6 +19,11 @@ export default function LoginPage() {
 
   const handleSubmit = async () => {
     setIsLoading(true);
+
+    if (!email || !password) {
+      toast.error('Please enter both email and password');
+      return;
+    }
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -34,7 +40,8 @@ export default function LoginPage() {
       }, 3000);
     } catch (err: any) {
       console.log(err);
-      toast.error(err.message || "Failed to login");
+      const friendlyMessage = getFriendlyFirebaseError(err);
+      toast.error(friendlyMessage);
     } finally {
       setIsLoading(false);
     }
