@@ -53,40 +53,37 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li>
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Aquarium
-            </a>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("products")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+              Products
+            </Link>
+            {openMenu === "products" && (
+              <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
+                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
+                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
+                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
+              </ul>
+            )}
           </li>
 
           <li
             className="relative"
-            onMouseEnter={() => handleMouseEnter("features")}
+            onMouseEnter={() => handleMouseEnter("facilities")}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Features
-            </a>
-          </li>
-
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("gallery")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Gallery
-            </a>
-          </li>
-
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("blog")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Blog
-            </a>
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+              Our Facilities
+            </Link>
+            {openMenu === "facilities" && (
+              <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
+                <li><Link href="/pictures" className="block px-4 py-2 hover:bg-cyan-600">Pictures</Link></li>
+                <li><Link href="/videos" className="block px-4 py-2 hover:bg-cyan-600">Videos</Link></li>
+              </ul>
+            )}
           </li>
 
           <li
