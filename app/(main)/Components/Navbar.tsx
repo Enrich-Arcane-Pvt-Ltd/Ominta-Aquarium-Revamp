@@ -63,9 +63,9 @@ const Navbar = () => {
             </Link>
             {openMenu === "products" && (
               <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
-                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
-                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
-                <li><Link href="#" className="block px-4 py-2 hover:bg-cyan-600">Item 01</Link></li>
+                <li><Link href="/marine" className="block px-4 py-2 hover:bg-cyan-600">Salt Water Fish</Link></li>
+                <li><Link href="/fresh" className="block px-4 py-2 hover:bg-cyan-600">Fresh Water Fish</Link></li>
+                <li><Link href="/plants" className="block px-4 py-2 hover:bg-cyan-600">Aquarium Plants</Link></li>
               </ul>
             )}
           </li>
@@ -75,15 +75,9 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("facilities")}
             onMouseLeave={handleMouseLeave}
           >
-            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+            <Link href="/facilities" className="hover:text-cyan-400 transition-colors">
               Our Facilities
             </Link>
-            {openMenu === "facilities" && (
-              <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
-                <li><Link href="/pictures" className="block px-4 py-2 hover:bg-cyan-600">Pictures</Link></li>
-                <li><Link href="/videos" className="block px-4 py-2 hover:bg-cyan-600">Videos</Link></li>
-              </ul>
-            )}
           </li>
 
           <li
