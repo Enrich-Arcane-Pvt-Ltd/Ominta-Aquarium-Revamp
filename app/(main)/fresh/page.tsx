@@ -6,8 +6,8 @@ import Image from 'next/image';
 
 export default function FreshWaterFishPage() {
     const data = [
-        {id: 1, image: '/Images/Fresh/Angel.jpg', name: 'Anemone (Pterophyllum scalare)'},
-        {id: 2, image: '/Images/Fresh/Platy.jpg', name: 'Angels (Xiphophorus maculatus)'},
+        {id: 1, image: '/Images/Fresh/Angel.jpg', name: 'Angel (Pterophyllum scalare)'},
+        {id: 2, image: '/Images/Fresh/Platy.jpg', name: 'Platy (Xiphophorus maculatus)'},
         {id: 3, image: '/Images/Fresh/Guppy.jpg', name: 'Guppy (Poecilla reticulata)'},
         {id: 4, image: '/Images/Fresh/Swordtail.jpg', name: 'Sword Tail (Xiphophorus helleri)'},
         {id: 5, image: '/Images/Fresh/Gourami.jpg', name: 'Gourami'},

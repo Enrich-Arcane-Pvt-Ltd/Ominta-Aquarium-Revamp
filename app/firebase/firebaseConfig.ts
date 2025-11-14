@@ -6,7 +6,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyC2FJ30iQWvb8FroHjY4aipmTGUOZ3VQjk",
     authDomain: "ominta-aquarium.firebaseapp.com",
     projectId: "ominta-aquarium",
-    storageBucket: "ominta-aquarium.firebasestorage.app",
+    storageBucket: "ominta-aquarium.appspot.com",
     messagingSenderId: "670589535647",
     appId: "1:670589535647:web:5e6953c311fb9fadf969aa",
     measurementId: "G-HVST8ZZ8PH"

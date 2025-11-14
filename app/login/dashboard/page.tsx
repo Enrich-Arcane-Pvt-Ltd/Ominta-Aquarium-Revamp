@@ -1,47 +1,20 @@
 "use client";
 
-import { Search, Plus, Edit2, Trash2, Sparkles, X } from "lucide-react";
-import { useState, useEffect } from "react";
-import {
-    collection,
-    addDoc,
-    deleteDoc,
-    doc,
-    onSnapshot,
-    updateDoc,
-    serverTimestamp,
-} from "firebase/firestore";
-import { db } from "../../firebase/firebaseConfig";
-import { ContentItem, FormData } from "@/app/types/Dashboard";
-import ContentModal from "@/app/components/ContentModal";
-import DeleteModal from "@/app/components/DeleteModal";
-import { toast } from "react-toastify";
+import { Sparkles, Images, ChevronsRight, FolderOpenDot } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 
+import { useEffect, useState } from "react";
+
 export default function Dashboard() {
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    const [editId, setEditId] = useState<string | null>(null);
-    const [deleteId, setDeleteId] = useState<string | null>(null);
-    const [expandedId, setExpandedId] = useState<string | null>(null);
-    const [items, setItems] = useState<ContentItem[]>([]);
-    const [formData, setFormData] = useState<FormData>({
-        name: "",
-        description: "",
-    });
-
-    const collectionRef = collection(db, "contents");
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
-    const fetchToken = async () => {
+    const handleFetchToken = async () => {
         try {
             const token = await localStorage.getItem('token');
             if (!token) {
+                setIsLoading(true);
                 router.push('/login');
             }
         } catch (error) {
@@ -50,115 +23,19 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        fetchToken();
-    }, [fetchToken]);
-
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
-            const data = snapshot.docs.map((doc) => ({
-                ...(doc.data() as ContentItem),
-                id: doc.id,
-            }));
-
-            setItems(data.sort((a, b) => (a.date < b.date ? 1 : -1)));
-        });
-
-        return () => unsubscribe();
+        handleFetchToken();
     }, []);
 
-    const filteredItems = items.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const handleSubmit = async () => {
-        if (!formData.name.trim()) return;
-
-        if (formData.name.length > 100) {
-            toast.error('Content Name should be less than 100 characters');
-            return;
-        }
-
-        if (formData?.description.length > 255) {
-            toast.error('Description should be less than 255 characters');
-            return;
-        }
-
-        setIsSubmitting(true);
-        try {
-            if (editId) {
-                const docRef = doc(db, "contents", editId);
-                await updateDoc(docRef, {
-                    name: formData.name,
-                    description: formData.description,
-                    date: new Date().toISOString().split("T")[0],
-                });
-            } else {
-                await addDoc(collectionRef, {
-                    name: formData.name,
-                    description: formData.description,
-                    date: new Date().toISOString().split("T")[0],
-                    createdAt: serverTimestamp(),
-                });
-            }
-            handleCloseModal();
-        } catch (err) {
-            console.error("Error adding/updating content:", err);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    const handleDelete = (id: string) => {
-        setDeleteId(id);
-        setIsDeleteModalOpen(true);
-    };
-
-    const handleConfirmDelete = async () => {
-        if (!deleteId) return;
-        setIsDeleting(true);
-        try {
-            await deleteDoc(doc(db, "contents", deleteId));
-        } catch (err) {
-            console.error("Error deleting item:", err);
-        } finally {
-            setDeleteId(null);
-            setIsDeleting(false);
-            setIsDeleteModalOpen(false);
-        }
-    };
-
-    const handleCancelDelete = () => {
-        setIsDeleteModalOpen(false);
-        setDeleteId(null);
-    };
-
-    const handleEdit = (id: string) => {
-        const item = items.find((it) => it.id === id);
-        if (!item) return;
-        setEditId(id);
-        setFormData({
-            name: item.name,
-            description: item.description || "",
-        });
-        setIsModalOpen(true);
-    };
-
-    const handleAdd = () => {
-        setEditId(null);
-        setFormData({ name: "", description: "" });
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setEditId(null);
-        setFormData({ name: "", description: "" });
-    };
-
-    const toggleExpand = (id: string) => {
-        setExpandedId((prev) => (prev === id ? null : id));
-    };
-
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-accent-900 via-primary-900 to-accent-900">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                    <p className="text-white text-lg font-medium animate-pulse">Loading...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-accent-900 via-primary-900 to-accent-900 p-4 md:p-8 relative overflow-hidden">
@@ -176,8 +53,8 @@ export default function Dashboard() {
                         <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
                             <Sparkles className="w-6 h-6 text-white" />
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-white">
-                            Content Management
+                        <h1 className="text-3xl md:text-5xl font-bold text-white">
+                            Admin Dashboard
                         </h1>
                     </div>
                     <p className="text-primary-300 text-lg ml-15">
@@ -185,122 +62,98 @@ export default function Dashboard() {
                     </p>
                 </div>
 
-                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 mb-6 border border-white/20 shadow-2xl">
-                    <div className="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center">
-                        <div className="flex-1 relative group">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary-400 group-focus-within:text-primary-300 transition-colors" />
-                            <input
-                                type="text"
-                                placeholder="Search your content..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl focus:outline-none focus:bg-white/20 focus:border-primary-400 transition-all duration-200 text-white placeholder-white/50"
-                            />
-                        </div>
-
-                        <button
-                            onClick={handleAdd}
-                            className="flex items-center justify-center gap-2 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/50 transform hover:scale-105 active:scale-95"
-                        >
-                            <Plus className="w-5 h-5" />
-                            Add New
-                        </button>
-                    </div>
-
-                    <div className="mt-4 text-sm text-primary-200">
-                        Showing{" "}
-                        <span className="font-bold text-primary-300">
-                            {filteredItems.length}
-                        </span>{" "}
-                        of{" "}
-                        <span className="font-bold text-primary-300">{items.length}</span>{" "}
-                        items
-                    </div>
-                </div>
-
-                <div className="grid gap-4">
-                    {filteredItems.length > 0 ? (
-                        filteredItems.map((item, index) => (
-                            <div
-                                key={item.id}
-                                onClick={() => toggleExpand(item.id)}
-                                className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 cursor-pointer hover:bg-white/15 hover:border-primary-400/50 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-                                style={{ animationDelay: `${index * 50}ms` }}
-                            >
-                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                                    <div className="flex-1">
-                                        <h3 className="text-xl font-bold text-white mb-2">{index + 1}. {item.name}</h3>
-                                        <p className="text-primary-300 text-sm">{item.date || "No date"}</p>
-
-                                        <div
-                                            className={`overflow-hidden transition-all duration-300 ${
-                                                expandedId === item.id ? "max-h-40 mt-3" : "max-h-0"
-                                            }`}
-                                        >
-                                            <p className="text-primary-100 text-sm leading-relaxed">
-                                                {item.description ? item.description : "No description available."}
-                                            </p>
-                                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div 
+                        onClick={() => router.push('/login/dashboard/facilities')}
+                        className="group relative overflow-hidden bg-white/70 backdrop-blur-sm rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary-500/30">
+                        <div className="absolute inset-0 bg-white/70 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        <div className="relative flex flex-col h-full justify-between">
+                            <div className="relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-600"></div>
+                                <div className="relative flex flex-row justify-center gap-3 items-center py-4 px-4">
+                                    <div className="bg-white/20 p-2.5 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                        <Images className="w-6 h-6 text-white" />
                                     </div>
-
-                                    <div
-                                        className="flex items-center gap-3"
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        <button
-                                            onClick={() => handleEdit(item.id)}
-                                            className="flex items-center gap-2 px-5 py-2.5 bg-primary-500/20 hover:bg-primary-500/30 text-primary-300 hover:text-primary-200 rounded-lg transition-all duration-200 border border-primary-400/30 hover:border-primary-400/50 font-semibold"
-                                        >
-                                            <Edit2 className="w-4 h-4" />
-                                            Edit
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(item.id)}
-                                            className="flex items-center gap-2 px-5 py-2.5 bg-error-500/20 hover:bg-error-500/30 text-error-300 hover:text-error-200 rounded-lg transition-all duration-200 border border-error-400/30 hover:border-error-400/50 font-semibold"
-                                        >
-                                            <Trash2 className="w-4 h-4" />
-                                            Delete
-                                        </button>
-                                    </div>
+                                    <h1 className="text-white font-bold text-lg tracking-wide">
+                                        Facility Management
+                                    </h1>
+                                    <Sparkles className="w-4 h-4 text-primary-200 animate-pulse" />
+                                </div>
+                                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-to-r from-primary-700 to-primary-600">
+                                    <svg className="w-full h-full" viewBox="0 0 1200 12" preserveAspectRatio="none">
+                                        <path d="M0,6 C150,12 350,0 600,6 C850,12 1050,0 1200,6 L1200,12 L0,12 Z" fill="white" fillOpacity="0.15"/>
+                                    </svg>
                                 </div>
                             </div>
-                        ))
-                    ) : (
-                        <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-12 text-center border border-white/20">
-                            <div className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Search className="w-8 h-8 text-primary-400" />
+
+                            <div className="flex-grow px-6 py-5">
+                                <p className="text-accent-800 leading-relaxed text-[15px] group-hover:text-accent-900 transition-colors">
+                                    Add, View, Edit & Delete Your Images & Videos of your Marine Facility & Fresh Water Facility.
+                                </p>
                             </div>
-                            <p className="text-white text-lg font-semibold mb-2">
-                                No items found
-                            </p>
-                            <p className="text-primary-300">
-                                Try adjusting your search query
-                            </p>
+
+                            <div className="relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-600 group-hover:from-primary-600 group-hover:to-primary-500 transition-all duration-300"></div>
+                                <div className="relative flex flex-row justify-end items-center gap-1 px-4 py-3">
+                                    <p className="text-white font-semibold text-sm group-hover:translate-x-[-4px] transition-transform duration-300">
+                                        Click Here
+                                    </p>
+                                    <ChevronsRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                                </div>
+                                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-300 to-primary-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            </div>
                         </div>
-                    )}
+
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-primary-400/10 rounded-bl-[100%] group-hover:bg-primary-400/20 transition-colors duration-300"></div>
+                    </div>
+
+                    <div
+                        onClick={() => router.push('/login/dashboard/content')}
+                        className="group relative overflow-hidden bg-white/70 backdrop-blur-sm rounded-2xl h-64 cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary-500/30">
+                        <div className="absolute inset-0 bg-white/70 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        <div className="relative flex flex-col h-full justify-between">
+                            <div className="relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-600"></div>
+                                <div className="relative flex flex-row justify-center gap-3 items-center py-4 px-4">
+                                    <div className="bg-white/20 p-2.5 rounded-xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                                        <FolderOpenDot className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h1 className="text-white font-bold text-lg tracking-wide">
+                                        Content Management
+                                    </h1>
+                                    <Sparkles className="w-4 h-4 text-primary-200 animate-pulse" />
+                                </div>
+                                <div className="absolute -bottom-1 left-0 right-0 h-3 bg-gradient-to-r from-primary-700 to-primary-600">
+                                    <svg className="w-full h-full" viewBox="0 0 1200 12" preserveAspectRatio="none">
+                                        <path d="M0,6 C150,12 350,0 600,6 C850,12 1050,0 1200,6 L1200,12 L0,12 Z" fill="white" fillOpacity="0.15"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div className="flex-grow px-6 py-5">
+                                <p className="text-accent-800 leading-relaxed text-[15px] group-hover:text-accent-900 transition-colors">
+                                    Manage any content related to your Marine Facility & Fresh Water Facility.
+                                </p>
+                            </div>
+
+                            <div className="relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-primary-600 group-hover:from-primary-600 group-hover:to-primary-500 transition-all duration-300"></div>
+                                <div className="relative flex flex-row justify-end items-center gap-1 px-4 py-3">
+                                    <p className="text-white font-semibold text-sm group-hover:translate-x-[-4px] transition-transform duration-300">
+                                        Click Here
+                                    </p>
+                                    <ChevronsRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                                </div>
+                                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-300 to-primary-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                            </div>
+                        </div>
+
+                        <div className="absolute top-0 right-0 w-20 h-20 bg-primary-400/10 rounded-bl-[100%] group-hover:bg-primary-400/20 transition-colors duration-300"></div>
+                    </div>
                 </div>
             </div>
-
-            {isModalOpen && (
-                <ContentModal
-                    isOpen={isModalOpen}
-                    editId={editId}
-                    formData={formData}
-                    isSubmitting={isSubmitting}
-                    onClose={handleCloseModal}
-                    onChange={setFormData}
-                    onSubmit={handleSubmit}
-                />
-            )}
-
-            {isDeleteModalOpen && (
-                <DeleteModal
-                    isOpen={isDeleteModalOpen}
-                    onCancel={handleCancelDelete}
-                    onConfirm={handleConfirmDelete}
-                    isDeleting={isDeleting}
-                />
-            )}
         </div>
     );
 }
