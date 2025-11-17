@@ -18,3 +18,13 @@ export interface FacilityFormData {
     facility: "fresh" | "marine" | "other",
     fileUrl?: string;
 }
+
+export interface Data {
+    id: string;
+    date: string;
+    description?: string;
+    facility: string;
+    fileUrl: string;
+    name: string;
+    type: string;
+}

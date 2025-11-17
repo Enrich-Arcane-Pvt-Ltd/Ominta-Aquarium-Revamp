@@ -78,7 +78,7 @@ export default function ContentPage() {
             return;
         }
 
-        if (formData?.description.length > 255) {
+        if (formData.description && formData?.description.length > 255) {
             toast.error('Description should be less than 255 characters');
             return;
         }
