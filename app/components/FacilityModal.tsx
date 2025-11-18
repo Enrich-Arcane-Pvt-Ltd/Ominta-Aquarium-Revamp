@@ -130,7 +130,7 @@ export default function FacilityModal({
                             type="file"
                             accept={formData.type === "image" ? "image/*" : "video/*"}
                             onChange={(e) =>
-                            onChange({ ...formData, file: e.target.files?.[0] || null })
+                                onChange({ ...formData, file: e.target.files?.[0] || null })
                             }
                             className="w-full px-4 py-3 bg-white border-2 border-light-400 rounded-xl 
                                     focus:outline-none focus:border-primary-500 focus:ring-2 

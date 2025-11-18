@@ -33,7 +33,7 @@ export const deleteFacility = async (id: string): Promise<void> => {
     try {
         const docRef = doc(db, "facility", id);
         await deleteDoc(docRef);
-        toast.info('Facility Delete Successfully !');
+        toast.info('Facility Deleted Successfully !');
     } catch (error) {
         console.error("Error deleting facility:", error);
         toast.error('Error deleting facility');

@@ -29,6 +29,9 @@ export default function FacilityPage() {
         facility: "fresh",
         fileUrl: undefined,
     });
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
 
     const collectionRef = collection(db, "facility");
     
@@ -81,6 +84,10 @@ export default function FacilityPage() {
                 const formDataObj = new FormData();
                 formDataObj.append("file", formData.file);
                 formDataObj.append("token", "my-secret-key");
+
+                if (editId && formData.fileUrl) {
+                    formDataObj.append("oldUrl", formData.fileUrl);
+                }
 
                 const response = await fetch("https://enricharcane.info/upload.php", {
                     method: "POST",
@@ -157,6 +164,45 @@ export default function FacilityPage() {
     const imageCount = filteredImages.length;
     const videoCount = filteredVideos.length;
     const totalCount = images.length + videos.length;
+
+    const handleDelete = (id: string) => {
+        setDeleteId(id);
+        setIsDeleteModalOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
+        if (!deleteId) return;
+        setIsDeleting(true);
+        try {
+            await deleteFacility(deleteId);
+            await handleFetch();
+        } catch (err) {
+            console.error("Error deleting item:", err);
+        } finally {
+            setDeleteId(null);
+            setIsDeleting(false);
+            setIsDeleteModalOpen(false);
+        }
+    };
+
+    const handleCancelDelete = () => {
+        setIsDeleteModalOpen(false);
+        setDeleteId(null);
+    };
+
+    const handleEdit = (item: Data) => {
+        setEditId(item.id);
+        setFormData({
+            name: item.name,
+            description: item.description || "",
+            type: item.type === 'image' ? 'image' : 'video',
+            file: null,
+            facility: item.facility === 'fresh' ? 'fresh' : item.facility === 'marine' ? 'marine' : 'other',
+            fileUrl: item.fileUrl,
+        });
+        setIsModalOpen(true);
+    };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-accent-900 via-primary-900 to-accent-900 p-4 md:p-8 relative overflow-hidden">
@@ -283,10 +329,10 @@ export default function FacilityPage() {
                                         <div className="flex items-center justify-between text-xs text-primary-300">
                                             <span>{item.date}</span>
                                             <div className="flex items-center justify-between">
-                                                <div className="bg-error-300 p-2 rounded-lg mx-2 cursor-pointer">
+                                                <div className="bg-error-300 p-2 rounded-lg mx-2 cursor-pointer" onClick={() => handleDelete(item.id)}>
                                                     <Trash className="text-error-800 w-6 h-6" />
                                                 </div>
-                                                <div className="bg-primary-300 p-2 rounded-lg mx-2 cursor-pointer">
+                                                <div className="bg-primary-300 p-2 rounded-lg mx-2 cursor-pointer" onClick={() => handleEdit(item)}>
                                                     <SquarePen className="text-primary-800 w-6 h-6" />
                                                 </div>
                                             </div>
@@ -366,10 +412,10 @@ export default function FacilityPage() {
                                         <div className="flex items-center justify-between text-xs text-primary-300">
                                             <span>{item.date}</span>
                                             <div className="flex items-center justify-between">
-                                                <div className="bg-error-300 p-2 rounded-lg mx-2 cursor-pointer">
+                                                <div className="bg-error-300 p-2 rounded-lg mx-2 cursor-pointer"  onClick={() => handleDelete(item.id)}>
                                                     <Trash className="text-error-800 w-6 h-6" />
                                                 </div>
-                                                <div className="bg-primary-300 p-2 rounded-lg mx-2 cursor-pointer">
+                                                <div className="bg-primary-300 p-2 rounded-lg mx-2 cursor-pointer" onClick={() => handleEdit(item)}>
                                                     <SquarePen className="text-primary-800 w-6 h-6" />
                                                 </div>
                                             </div>
@@ -391,6 +437,15 @@ export default function FacilityPage() {
                     onClose={handleCloseModal}
                     onChange={setFormData}
                     onSubmit={handleSubmit}
+                />
+            )}
+
+            {isDeleteModalOpen && (
+                <DeleteModal
+                    isOpen={isDeleteModalOpen}
+                    onCancel={handleCancelDelete}
+                    onConfirm={handleConfirmDelete}
+                    isDeleting={isDeleting}
                 />
             )}
         </div>
