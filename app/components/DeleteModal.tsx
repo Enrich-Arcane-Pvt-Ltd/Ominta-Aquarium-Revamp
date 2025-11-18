@@ -40,7 +40,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
 
                 <div className="p-6 text-accent-800">
                     <p className="text-lg font-medium text-justify">
-                        Are you sure you want to delete this content? This action cannot be
+                        Are you sure you want to delete this? This action cannot be
                         undone.
                     </p>
                 </div>

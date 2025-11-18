@@ -78,6 +78,51 @@ const AboutPage: React.FC = () => {
         </div>
       </div>
 
+      <div className="relative py-20 px-6 md:px-20 overflow-hidden">
+        <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+          <div className="group relative">
+            <div className="relative bg-white rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-500 group-hover:shadow-2xl group-hover:border-primary-200">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+                  <Sparkles className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Our Vision</h3>
+                  <div className="w-16 h-1 bg-primary-500 rounded-full"></div>
+                </div>
+              </div>
+              
+              <p className="text-gray-600 leading-relaxed">
+                The Ominta Aquarium Revamp team has created some of the most stylish and luxury bespoke
+                aquariums and fish tanks in the country. We draw on over 25 years of expertise in designing,
+                manufacturing, and installing aquariums.
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative">            
+            <div className="relative rounded-2xl p-8 shadow-lg border border-gray-100 transition-all duration-500 group-hover:shadow-2xl group-hover:border-primary-200">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-lg transform transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
+                  <Award className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Our Mission</h3>
+                  <div className="w-16 h-1 bg-primary-500 rounded-full"></div>
+                </div>
+              </div>
+              
+              <p className="text-gray-600 leading-relaxed">
+                The Ominta Aquarium Revamp team has created some of the most stylish and luxury bespoke
+                aquariums and fish tanks in the country. We draw on over 25 years of expertise in designing,
+                manufacturing, and installing aquariums.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="relative py-20 md:py-28 lg:py-32 text-white overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div 
@@ -95,6 +140,8 @@ const AboutPage: React.FC = () => {
           backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 50px, white 50px, white 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, white 50px, white 51px)`
         }}></div>
       </div>
+
+      
 
       <div id="team" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-20">

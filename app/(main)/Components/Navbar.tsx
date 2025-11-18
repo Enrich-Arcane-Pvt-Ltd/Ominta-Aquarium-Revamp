@@ -53,40 +53,31 @@ const Navbar = () => {
             </Link>
           </li>
 
-          <li>
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Aquarium
-            </a>
+          <li
+            className="relative"
+            onMouseEnter={() => handleMouseEnter("products")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Link href="/about" className="hover:text-cyan-400 transition-colors">
+              Products
+            </Link>
+            {openMenu === "products" && (
+              <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
+                <li><Link href="/marine" className="block px-4 py-2 hover:bg-cyan-600">Salt Water Fish</Link></li>
+                <li><Link href="/fresh" className="block px-4 py-2 hover:bg-cyan-600">Fresh Water Fish</Link></li>
+                <li><Link href="/plants" className="block px-4 py-2 hover:bg-cyan-600">Aquarium Plants</Link></li>
+              </ul>
+            )}
           </li>
 
           <li
             className="relative"
-            onMouseEnter={() => handleMouseEnter("features")}
+            onMouseEnter={() => handleMouseEnter("facilities")}
             onMouseLeave={handleMouseLeave}
           >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Features
-            </a>
-          </li>
-
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("gallery")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Gallery
-            </a>
-          </li>
-
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("blog")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <a href="#" className="hover:text-cyan-400 transition-colors">
-              Blog
-            </a>
+            <Link href="/facilities" className="hover:text-cyan-400 transition-colors">
+              Our Facilities
+            </Link>
           </li>
 
           <li
