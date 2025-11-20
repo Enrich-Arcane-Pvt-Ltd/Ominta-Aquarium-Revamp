@@ -6,9 +6,9 @@ import Image from "next/image";
 
 export default function PlantsPage() {
     const data = [
-        { id: 1, image: "/Images/Plants/CryptocoryneParva.jpg", name: "Cryptocoryne Parva" },
-        { id: 2, image: "/Images/Plants/Ech.jpg", name: "Ech. bleheri - Pots" },
-        { id: 3, image: "/Images/Plants/Echinodorus.jpg", name: "Echinodorus (Marble queen)" },
+        { id: 1, image: "/Images/Plants/CryptocoryneParva.JPG", name: "Cryptocoryne Parva" },
+        { id: 2, image: "/Images/Plants/Ech.JPG", name: "Ech. bleheri - Pots" },
+        { id: 3, image: "/Images/Plants/Echinodorus.JPG", name: "Echinodorus (Marble queen)" },
         { id: 4, image: "/Images/Plants/Egeria.jpg", name: "Egeria densa - bunch" },
         { id: 5, image: "/Images/Plants/EriocaulonCinerum.jpg", name: "Eriocaulon cinerum" },
         { id: 6, image: "/Images/Plants/EriocaulonSpecies.jpg", name: "Eriocaulon species" },

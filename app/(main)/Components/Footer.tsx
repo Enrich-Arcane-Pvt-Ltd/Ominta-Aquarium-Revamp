@@ -17,23 +17,39 @@ export default function Footer() {
           <div>
             <h3 className="text-light-100 text-xl font-bold mb-4">Links</h3>
             <ul className="space-y-2">
-              {[
-                "Home",
-                "About Us",
-                "Aquarium Services",
-                "Gallery",
-                "Blog",
-                "Contact",
-              ].map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href="#"
-                    className="text-primary-400 hover:text-primary-300 transition-colors"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              <li >
+                <Link
+                  href="/"
+                  className="text-primary-400 hover:text-primary-300 transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li >
+                <Link
+                  href="/about"
+                  className="text-primary-400 hover:text-primary-300 transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li >
+                <Link
+                  href="facilities"
+                  className="text-primary-400 hover:text-primary-300 transition-colors"
+                >
+                  Our Facilities
+                </Link>
+              </li>
+              <li >
+                <Link
+                  href="contact"
+                  className="text-primary-400 hover:text-primary-300 transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              
             </ul>
           </div>
 
@@ -76,21 +92,33 @@ export default function Footer() {
 
           <div>
             <h3 className="text-light-100 text-xl font-bold mb-4">
-              Recent Posts
+              Our Products
             </h3>
             <ul className="space-y-3">
-              {["Standard Post", "Audio Post", "Gallery Post"].map(
-                (post, i) => (
-                  <li key={i}>
-                    <Link
-                      href="#"
-                      className="text-accent-400 hover:text-primary-400 transition-colors"
-                    >
-                      {post}
-                    </Link>
-                  </li>
-                )
-              )}
+              <li>
+                <Link
+                  href="/marine"
+                  className="text-accent-400 hover:text-primary-400 transition-colors"
+                >
+                  Salt Water Fish
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/fresh"
+                  className="text-accent-400 hover:text-primary-400 transition-colors"
+                >
+                  Fresh Water Fish
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/plants"
+                  className="text-accent-400 hover:text-primary-400 transition-colors"
+                >
+                  Aquarium Plants
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
