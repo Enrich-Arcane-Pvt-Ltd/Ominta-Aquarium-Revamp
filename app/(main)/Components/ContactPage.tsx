@@ -44,15 +44,30 @@ const ContactSection: React.FC = () => {
     }
 
     try {
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      })
-      
+      const response = await fetch("https://enricharcane.info/contact.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        toast.success("Message sent successfully!");
+
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        toast.error(result.message);
+      }
     } catch (error) {
-      toast.error('Error sending message');
-      console.log('Failed to send message : ', error);
+      toast.error("Failed to send message.");
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
