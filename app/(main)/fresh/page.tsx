@@ -14,11 +14,11 @@ export default function FreshWaterFishPage() {
         {id: 6, image: '/Images/Fresh/DanioZebra.jpg', name: 'Danio Zebra (Brachy Danio)'},
         {id: 7, image: '/Images/Fresh/Molly.jpg', name: 'Molly (Poecilia latipinna)'},
         {id: 8, image: '/Images/Fresh/Oscar.jpg', name: 'Oscar (Astronotus occellatus )'},
-        {id: 9, image: '/Images/Fresh/Cichlid.jpg', name: 'Cichlid (Melanochromis)'},
+        {id: 9, image: '/Images/Fresh/cichlid.jpg', name: 'Cichlid (Melanochromis)'},
         {id: 10, image: '/Images/Fresh/Tetra.jpg', name: 'Tetra'},
         {id: 11, image: '/Images/Fresh/Barb.jpg', name: 'Barb'},
         {id: 12, image: '/Images/Fresh/FighterFish.jpg', name: 'Fighter Fish (Beta Splendens)'},
-        {id: 13, image: '/Images/Fresh/Scavenger.jpg', name: 'Scavenger (Hypostomus punctatus)'},
+        {id: 13, image: '/Images/Fresh/SCAVENGER.jpg', name: 'Scavenger (Hypostomus punctatus)'},
         {id: 14, image: '/Images/Fresh/GoldFish.jpg', name: 'Gold Fish (Carassius auratus)'},
         {id: 15, image: '/Images/Fresh/KoiCarp.jpg', name: 'Koi Carp (Cyprinus carpio)'},
         {id: 16, image: '/Images/Fresh/Discus.jpg', name: 'Discus (Symphysodon aequifasciata haraldi)'},
@@ -55,7 +55,7 @@ export default function FreshWaterFishPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-center justify-center gap-3 mb-3">
                         <Waves className="w-10 h-10 text-primary-400 animate-bounce" />
-                        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-cyan-400 to-primary-500">
+                        <h1 className="text-4xl md:text-6xl font-bold text-transparent py-4 bg-clip-text bg-gradient-to-r from-primary-300 via-cyan-400 to-primary-500">
                             Fresh Water Fish Gallery
                         </h1>
                         <Fish className="w-10 h-10 text-cyan-400 animate-bounce delay-300" />

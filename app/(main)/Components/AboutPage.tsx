@@ -46,11 +46,11 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="flex flex-col ml-4">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6 leading-snug">
+              <h2 className="text-3xl sm:text-4xl md:text-2xl xl:text-3xl font-bold mb-6 leading-snug">
                 Specialists In Custom Fish Tanks, Luxury Aquarium Design And Installation.
               </h2>
 
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-300 mb-6 leading-relaxed">
                 The Ominta Aquarium Revamp team has created some of the most stylish and luxury bespoke
                 aquariums and fish tanks in the country. We draw on over 25 years of expertise in designing,
                 manufacturing, and installing aquariums.
@@ -66,7 +66,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative w-full max-w-md md:flex justify-center hidden">
+        <div className="relative w-full max-w-md lg:flex justify-center hidden">
           <Image
             src="/Images/img12.png"
             alt="Luxury Fish"
@@ -112,7 +112,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed">
                 The Ominta Aquarium Revamp team has created some of the most stylish and luxury bespoke
                 aquariums and fish tanks in the country. We draw on over 25 years of expertise in designing,
                 manufacturing, and installing aquariums.

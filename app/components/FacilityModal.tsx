@@ -26,7 +26,7 @@ export default function FacilityModal({
 
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
-            <div className="bg-gradient-to-br from-primary-100 to-primary-700 rounded-2xl shadow-2xl w-full max-w-lg transform animate-in zoom-in-95 duration-200">
+            <div className="bg-gradient-to-br from-primary-100 to-primary-700 rounded-2xl  shadow-2xl w-full max-w-lg transform animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-primary-500 scrollbar-track-primary-200">
                 <div className="flex items-center justify-between p-6 border-b border-light-400">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">

@@ -1,50 +1,104 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { Contact } from "@/app/types/Dashboard";
+import { toast } from "react-toastify";
 
 const ContactSection: React.FC = () => {
+  const [formData, setFormData] = useState<Contact>({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setIsSubmitting(true);
+
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Please fill the fields');
+      setIsSubmitting(false);      
+      return
+    }
+
+    if (formData.name.length > 50) {
+      toast.error('Name should be less than 50 characters');
+      setIsSubmitting(false);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (formData.message.length > 255) {
+      toast.error('Message should be less than 255 characters');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      })
+      
+    } catch (error) {
+      toast.error('Error sending message');
+      console.log('Failed to send message : ', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <section className="w-full bg-white pt-16">
       <div className="mx-auto flex flex-col gap-10">
         <div className="w-full flex flex-col items-center justify-center px-6 sm:px-10 lg:px-20">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">
-            Drop a Line
+            Contact Us
           </h2>
           <div className="text-3xl text-cyan-500 mb-10 text-center">~</div>
 
-          <form className="w-full max-w-2xl space-y-6">
+          <form className="w-full max-w-2xl space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
                 type="text"
                 placeholder="Your name"
-                className="border border-gray-300 text-sm md:text-base px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full"
+                className="border border-gray-300 text-sm md:text-base px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full text-primary-700 font-semibold"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
               <input
-                type="email"
+                type="text"
                 placeholder="Your e-mail"
-                className="border border-gray-300 text-sm md:text-base px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full"
+                className="border border-gray-300 text-sm md:text-base px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-full text-primary-700 font-semibold"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
             <textarea
               placeholder="Your message"
               rows={6}
-              className="w-full border border-gray-300 text-sm md:text-base px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              className="w-full border border-gray-300 text-sm md:text-base px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-cyan-400 text-primary-700 font-semibold"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             ></textarea>
-
-            <div className="flex gap-2 justify-center text-gray-600 text-xs sm:text-sm">
-              <input type="checkbox" id="agree" className="mt-1 accent-cyan-500" />
-              <label htmlFor="agree">
-                I agree that my submitted data is being collected and stored.
-              </label>
-            </div>
 
             <div className="flex justify-center">
               <button
                 type="submit"
                 className="mt-4 bg-cyan-600 text-white px-8 py-3 text-sm sm:text-base font-semibold uppercase tracking-wider hover:bg-white hover:text-cyan-600 border border-cyan-600 transition-all duration-300"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </div>
           </form>

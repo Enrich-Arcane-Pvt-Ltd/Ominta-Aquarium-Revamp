@@ -28,3 +28,9 @@ export interface Data {
     name: string;
     type: string;
 }
+
+export interface Contact {
+    name: string;
+    email: string;
+    message: string;
+}
