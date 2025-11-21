@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import "../globals.css";
+import { ToastContainer } from "react-toastify";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +31,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#1b1b1b] text-white`}
       >
-        {/* Navbar appears on all pages */}
         <Navbar />
 
         <main>{children}</main>
 
-        {/* Footer appears on all pages */}
         <Footer />
+        <ScrollToTop />
+        <ToastContainer />
       </body>
     </html>
   );

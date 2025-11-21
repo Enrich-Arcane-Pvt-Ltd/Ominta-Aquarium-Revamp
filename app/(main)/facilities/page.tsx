@@ -1,20 +1,17 @@
 "use client";
 
-import { Search, Plus, Sparkles, ImageIcon, Film, Trash, SquarePen } from "lucide-react";
+import { Search, Sparkles, ImageIcon, Film } from "lucide-react";
 import { useEffect, useState } from "react";
-import {
-    collection,
-    addDoc, doc, updateDoc,
-    serverTimestamp
-} from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
-import { FacilityFormData, Data } from "@/app/types/Dashboard";
+import { Data } from "@/app/types/Dashboard";
 import { fetchFacilitiesByType } from "@/app/firebase/hooks";
 
 export default function FacilityPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [images, setImages] = useState<Data[]>([]);
     const [videos, setVideos] = useState<Data[]>([]);
+    const [expandedId, setExpandedId] = useState<string | null>(null);
 
     const collectionRef = collection(db, "facility");
     
@@ -153,9 +150,26 @@ export default function FacilityPage() {
                                             {item.name}
                                         </h3>
                                         {item.description && (
-                                            <p className="text-primary-200 text-sm mb-3 line-clamp-2">
-                                                {item.description}
-                                            </p>
+                                            <div>
+                                                <p
+                                                    className={`text-primary-200 text-sm mb-3 transition-all ${
+                                                        expandedId === item.id ? "" : "line-clamp-2"
+                                                    }`}
+                                                >
+                                                    {item.description}
+                                                </p>
+
+                                                {item.description?.length > 80 && (
+                                                    <button
+                                                        onClick={() =>
+                                                            setExpandedId(expandedId === item.id ? null : item.id)
+                                                        }
+                                                        className="text-cyan-400 text-xs font-bold hover:underline"
+                                                    >
+                                                        {expandedId === item.id ? "Show less" : "Read more"}
+                                                    </button>
+                                                )}
+                                            </div>
                                         )}
                                         <div className="flex items-center justify-between text-xs text-primary-300">
                                             <span>{item.date}</span>

@@ -55,7 +55,7 @@ export default function FreshWaterFishPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="flex items-center justify-center gap-3 mb-3">
                         <Waves className="w-10 h-10 text-primary-400 animate-bounce" />
-                        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-cyan-400 to-primary-500">
+                        <h1 className="text-4xl md:text-6xl font-bold text-transparent py-4 bg-clip-text bg-gradient-to-r from-primary-300 via-cyan-400 to-primary-500">
                             Fresh Water Fish Gallery
                         </h1>
                         <Fish className="w-10 h-10 text-cyan-400 animate-bounce delay-300" />

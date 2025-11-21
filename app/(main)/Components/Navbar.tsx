@@ -119,9 +119,9 @@ const Navbar = () => {
         <div className="lg:hidden bg-[#1b1b1b] border-t border-gray-700 max-h-[calc(100vh-80px)] overflow-y-auto">
           <ul className="text-white">
             <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link href="/" className="block px-6 py-3 hover:bg-[#2a2a2a]">
                 Home
-              </a>
+              </Link>
             </li>
 
             <li className="border-b border-gray-700">
@@ -131,27 +131,39 @@ const Navbar = () => {
             </li>
 
             <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
-                Aquarium
-              </a>
+              <button
+                onClick={() => toggleMobileSubmenu("products")}
+                className="w-full flex justify-between items-center px-6 py-3 hover:bg-[#2a2a2a]"
+              >
+                <span>Products</span>
+                <span>{mobileSubmenuOpen === "products" ? "−" : "+"}</span>
+              </button>
+
+              {mobileSubmenuOpen === "products" && (
+                <ul className="bg-[#2a2a2a]">
+                  <li>
+                    <Link href="/marine" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                      Salt Water Fish
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/fresh" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                      Fresh Water Fish
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/plants" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                      Aquarium Plants
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
 
             <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
-                Features
-              </a>
-            </li>
-
-            <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
-                Gallery
-              </a>
-            </li>
-
-            <li className="border-b border-gray-700">
-              <a href="#" className="block px-6 py-3 hover:bg-[#2a2a2a]">
-                Blog
-              </a>
+              <Link href="/facilities" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+                Our Facility
+              </Link>
             </li>
 
             <li className="border-b border-gray-700">

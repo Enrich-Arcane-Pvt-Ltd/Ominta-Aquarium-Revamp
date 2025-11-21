@@ -9,16 +9,16 @@ export default function PlantsPage() {
         { id: 1, image: "/Images/Plants/CryptocoryneParva.JPG", name: "Cryptocoryne Parva" },
         { id: 2, image: "/Images/Plants/Ech.JPG", name: "Ech. bleheri - Pots" },
         { id: 3, image: "/Images/Plants/Echinodorus.JPG", name: "Echinodorus (Marble queen)" },
-        { id: 4, image: "/Images/Plants/Egeria.jpg", name: "Egeria densa - bunch" },
-        { id: 5, image: "/Images/Plants/EriocaulonCinerum.jpg", name: "Eriocaulon cinerum" },
-        { id: 6, image: "/Images/Plants/EriocaulonSpecies.jpg", name: "Eriocaulon species" },
-        { id: 7, image: "/Images/Plants/Hygrophila.jpg", name: "Hygrophila difformis" },
-        { id: 8, image: "/Images/Plants/Limnophila.jpg", name: "Limnophila aromaticoides (Purple hybrid)" },
-        { id: 9, image: "/Images/Plants/LimnophilaIndica.jpg", name: "Limnophila indica" },
-        { id: 10, image: "/Images/Plants/LimnophilaTwo.jpg", name: "Limnophila aromaticoides" },
-        { id: 11, image: "/Images/Plants/Ludwegia.jpg", name: "Ludwegia repens (Variegated)" },
+        { id: 4, image: "/Images/Plants/Egeria.JPG", name: "Egeria densa - bunch" },
+        { id: 5, image: "/Images/Plants/EriocaulonCinerum.JPG", name: "Eriocaulon cinerum" },
+        { id: 6, image: "/Images/Plants/EriocaulonSpecies.JPG", name: "Eriocaulon species" },
+        { id: 7, image: "/Images/Plants/Hygrophila.JPG", name: "Hygrophila difformis" },
+        { id: 8, image: "/Images/Plants/Limnophila.JPG", name: "Limnophila aromaticoides (Purple hybrid)" },
+        { id: 9, image: "/Images/Plants/LimnophilaIndica.JPG", name: "Limnophila indica" },
+        { id: 10, image: "/Images/Plants/LimnophilaTwo.JPG", name: "Limnophila aromaticoides" },
+        { id: 11, image: "/Images/Plants/Ludwegia.JPG", name: "Ludwegia repens (Variegated)" },
         { id: 12, image: "/Images/Plants/Nomaphila.jpg", name: "Nomaphila species (Long leaf)" },
-        { id: 13, image: "/Images/Plants/Rotala.jpg", name: "Rotala species (Green)" },
+        { id: 13, image: "/Images/Plants/Rotala.JPG", name: "Rotala species (Green)" },
         { id: 14, image: "/Images/Plants/Tonina.jpg", name: "Tonina" },
     ];
 
@@ -80,7 +80,7 @@ export default function PlantsPage() {
             `}</style>
 
             <div className="relative z-10 pt-16 pb-10 px-4 md:px-8 text-center">
-                <div className="inline-flex items-center gap-4 mb-4">
+                <div className="sm:inline-flex flex sm:items-center gap-4 mb-4">
                     <Droplets className="w-12 h-12 text-primary-300 animate-bounce" />
                     <h1 className="text-5xl md:text-7xl font-extrabold">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-primary-300 to-teal-300">

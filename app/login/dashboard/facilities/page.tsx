@@ -221,7 +221,7 @@ export default function FacilityPage() {
                             <Sparkles className="w-6 h-6 text-white" />
                         </div>
                         <h1 className="text-4xl md:text-5xl font-bold text-white">
-                            Facility Management
+                            Our Facilities
                         </h1>
                     </div>
                     <p className="text-primary-300 text-lg ml-15">
