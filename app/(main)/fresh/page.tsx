@@ -21,7 +21,7 @@ export default function FreshWaterFishPage() {
         {id: 13, image: '/Images/Fresh/SCAVENGER.jpg', name: 'Scavenger (Hypostomus punctatus)'},
         {id: 14, image: '/Images/Fresh/GoldFish.jpg', name: 'Gold Fish (Carassius auratus)'},
         {id: 15, image: '/Images/Fresh/KoiCarp.jpg', name: 'Koi Carp (Cyprinus carpio)'},
-        {id: 16, image: '/Images/Fresh/Discus.jpg', name: 'Discus(Symphysodon aequifasciata haraldi)'},
+        {id: 16, image: '/Images/Fresh/Discus-New.webp', name: 'Discus(Symphysodon aequifasciata haraldi)'},
     ];
 
     const [searchTerm, setSearchTerm] = useState('');
