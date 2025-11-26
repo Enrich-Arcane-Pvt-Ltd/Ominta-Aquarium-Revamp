@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, Plus, Sparkles, ImageIcon, Film, Trash, SquarePen } from "lucide-react";
+import { Search, Plus, Sparkles, ImageIcon, Film, Trash, SquarePen, MoveLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import {
     collection,
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import FacilityModal from "@/app/components/FacilityModal";
 import { fetchFacilitiesByType, deleteFacility } from "@/app/firebase/hooks";
 import DeleteModal from "@/app/components/DeleteModal";
+import { useRouter } from "next/navigation";
 
 export default function FacilityPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -32,6 +33,8 @@ export default function FacilityPage() {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
+
+    const router = useRouter();
 
     const collectionRef = collection(db, "facility");
     
@@ -215,18 +218,26 @@ export default function FacilityPage() {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="mb-8">
-                    <div className="flex items-center gap-3 mb-3">
-                        <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
-                            <Sparkles className="w-6 h-6 text-white" />
+                <div className="flex flex-row justify-between items-center">
+                    <div className="mb-8">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+                                <Sparkles className="w-6 h-6 text-white" />
+                            </div>
+                            <h1 className="text-4xl md:text-5xl font-bold text-white">
+                                Our Facilities
+                            </h1>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-white">
-                            Our Facilities
-                        </h1>
+                        <p className="text-primary-300 text-lg ml-15">
+                            Manage your aquarium facilities seamlessly
+                        </p>
                     </div>
-                    <p className="text-primary-300 text-lg ml-15">
-                        Manage your aquarium facilities seamlessly
-                    </p>
+                    <div>
+                        <button className="flex flex-row cursor-pointer font-semibold" onClick={() => router.back()}>
+                            <MoveLeft className="mr-2" />
+                            Back
+                        </button>
+                    </div>
                 </div>
 
                 <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 mb-6 border border-white/20 shadow-2xl">

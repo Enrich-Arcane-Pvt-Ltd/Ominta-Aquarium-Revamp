@@ -119,13 +119,27 @@ const Navbar = () => {
         <div className="lg:hidden bg-[#1b1b1b] border-t border-gray-700 max-h-[calc(100vh-80px)] overflow-y-auto">
           <ul className="text-white">
             <li className="border-b border-gray-700">
-              <Link href="/" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link 
+                href="/" 
+                className="block px-6 py-3 hover:bg-[#2a2a2a]"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileSubmenuOpen(null);
+                }}
+              >
                 Home
               </Link>
             </li>
 
             <li className="border-b border-gray-700">
-              <Link href="/about" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link 
+                href="/about" 
+                className="block px-6 py-3 hover:bg-[#2a2a2a]"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileSubmenuOpen(null);
+                }}
+              >
                 About Us
               </Link>
             </li>
@@ -142,17 +156,38 @@ const Navbar = () => {
               {mobileSubmenuOpen === "products" && (
                 <ul className="bg-[#2a2a2a]">
                   <li>
-                    <Link href="/marine" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                    <Link 
+                      href="/marine" 
+                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setMobileSubmenuOpen(null);
+                      }}
+                    >
                       Salt Water Fish
                     </Link>
                   </li>
                   <li>
-                    <Link href="/fresh" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                    <Link 
+                      href="/fresh" 
+                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setMobileSubmenuOpen(null);
+                      }}
+                    >
                       Fresh Water Fish
                     </Link>
                   </li>
                   <li>
-                    <Link href="/plants" className="block px-10 py-3 hover:bg-[#3a3a3a]">
+                    <Link 
+                      href="/plants" 
+                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        setMobileSubmenuOpen(null);
+                      }}
+                    >
                       Aquarium Plants
                     </Link>
                   </li>
@@ -161,13 +196,27 @@ const Navbar = () => {
             </li>
 
             <li className="border-b border-gray-700">
-              <Link href="/facilities" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link 
+                href="/facilities" 
+                className="block px-6 py-3 hover:bg-[#2a2a2a]"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileSubmenuOpen(null);
+                }}
+              >
                 Our Facility
               </Link>
             </li>
 
             <li className="border-b border-gray-700">
-              <Link href="/contact" className="block px-6 py-3 hover:bg-[#2a2a2a]">
+              <Link 
+                href="/contact" 
+                className="block px-6 py-3 hover:bg-[#2a2a2a]"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileSubmenuOpen(null);
+                }}
+              >
                 Contact
               </Link>
             </li>
