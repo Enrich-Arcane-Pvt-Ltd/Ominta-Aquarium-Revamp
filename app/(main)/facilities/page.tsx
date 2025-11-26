@@ -243,13 +243,34 @@ export default function FacilityPage() {
                                     </div>
 
                                     <div className="p-5">
-                                        <h3 className="text-xl font-bold text-white mb-2 line-clamp-1">
+                                        <h3
+                                            className={`text-xl font-bold text-white mb-2 transition-all ${
+                                                expandedId === item.id ? "" : "line-clamp-1"
+                                            }`}
+                                        >
                                             {item.name}
                                         </h3>
                                         {item.description && (
-                                            <p className="text-primary-200 text-sm mb-3 line-clamp-2">
-                                                {item.description}
-                                            </p>
+                                            <div>
+                                                <p
+                                                    className={`text-primary-200 text-sm mb-3 transition-all ${
+                                                        expandedId === item.id ? "" : "line-clamp-2"
+                                                    }`}
+                                                >
+                                                    {item.description}
+                                                </p>
+
+                                                {item.description?.length > 80 && (
+                                                    <button
+                                                        onClick={() =>
+                                                            setExpandedId(expandedId === item.id ? null : item.id)
+                                                        }
+                                                        className="text-cyan-400 text-xs font-bold hover:underline"
+                                                    >
+                                                        {expandedId === item.id ? "Show less" : "Read more"}
+                                                    </button>
+                                                )}
+                                            </div>
                                         )}
                                         <div className="flex items-center justify-between text-xs text-primary-300">
                                             <span>{item.date}</span>
