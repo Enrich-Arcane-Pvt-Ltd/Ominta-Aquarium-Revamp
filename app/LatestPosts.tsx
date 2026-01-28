@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 const LatestPosts: React.FC = () => {
   const posts = [
@@ -10,7 +10,7 @@ const LatestPosts: React.FC = () => {
       date: "Dec 28, 2016",
       title: "Looking for aquarium specialists?",
       description:
-        "Are you looking for equipment for your aquarium? Look no further than AquaPro. We stock all aspects of aquarium equipment.",
+        "Are you looking for equipment for your aquarium? Look no further than Ominta-Aquarium. We stock all aspects of aquarium equipment.",
     },
     {
       image: "/images/img9.jpg",
@@ -26,23 +26,27 @@ const LatestPosts: React.FC = () => {
       description:
         "Our service covers all types of aquariums — from cold water to tropical, freshwater, and marine fish-only systems.",
     },
+    {
+      image: "/images/img8.jpg",
+      date: "Dec 28, 2016",
+      title: "Looking for aquarium specialists?",
+      description:
+        "Are you looking for equipment for your aquarium? Look no further than Ominta-Aquarium. We stock all aspects of aquarium equipment.",
+    },
   ];
 
   return (
     <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        
         <h2 className="text-4xl font-bold text-gray-800 mb-2">Latest Posts</h2>
         <div className="text-cyan-600 text-3xl mb-12">~</div>
 
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {posts.map((post, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300"
             >
-              
               <div className="relative w-full h-56">
                 <Image
                   src={post.image}
@@ -52,7 +56,6 @@ const LatestPosts: React.FC = () => {
                 />
               </div>
 
-              
               <div className="p-6 text-center">
                 <p className="text-cyan-700 text-xs font-semibold uppercase mb-3">
                   {post.date}
