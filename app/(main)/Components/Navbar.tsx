@@ -6,22 +6,23 @@ import { useState } from "react";
 import Link from "next/link";
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(null);
+  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(null);
 
-  const handleMouseEnter = (menu: any) => setOpenMenu(menu);
+  const handleMouseEnter = (menu: string) => setOpenMenu(menu);
   const handleMouseLeave = () => setOpenMenu(null);
 
-  const toggleMobileSubmenu = (menu: any) => {
+  const toggleMobileSubmenu = (menu: string) => {
     setMobileSubmenuOpen(mobileSubmenuOpen === menu ? null : menu);
   };
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-[#1b1b1b] shadow-md">
       <div className="h-[80px] flex items-center justify-between px-4 md:px-6 lg:px-10">
+        
         <div className="flex items-center gap-3">
-          <div className="w-[80px] h-[60px] md:w-[120px] md:h-[60px] rounded flex items-center justify-center text-white font-bold">
+          <div className="w-[80px] h-[60px] md:w-[120px] md:h-[60px] flex items-center justify-center">
             <Image
               src="/images/img1.png"
               alt="Ominta-Aquarium Logo"
@@ -32,25 +33,13 @@ const Navbar = () => {
           </div>
         </div>
 
-        <ul className="hidden lg:flex list-none gap-8 xl:gap-10 text-white text-[14px] font-medium">
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("home")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link href="/" className="hover:text-cyan-400 transition-colors">
-              Home
-            </Link>
+        <ul className="hidden lg:flex gap-8 xl:gap-10 text-white text-[14px] font-medium">
+          <li>
+            <Link href="/" className="hover:text-cyan-400">Home</Link>
           </li>
 
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("about")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link href="/about" className="hover:text-cyan-400 transition-colors">
-              About Us
-            </Link>
+          <li>
+            <Link href="/about" className="hover:text-cyan-400">About Us</Link>
           </li>
 
           <li
@@ -58,9 +47,7 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("products")}
             onMouseLeave={handleMouseLeave}
           >
-            <Link href="/about" className="hover:text-cyan-400 transition-colors">
-              Products
-            </Link>
+            <Link href="/about" className="hover:text-cyan-400">Products</Link>
             {openMenu === "products" && (
               <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
                 <li><Link href="/marine" className="block px-4 py-2 hover:bg-cyan-600">Salt Water Fish</Link></li>
@@ -75,161 +62,69 @@ const Navbar = () => {
             onMouseEnter={() => handleMouseEnter("facilities")}
             onMouseLeave={handleMouseLeave}
           >
-            <Link href="/facilities" className="hover:text-cyan-400 transition-colors">
-              Our Facilities
-            </Link>
+            <Link href="/about" className="hover:text-cyan-400">Our Facilities</Link>
+            {openMenu === "facilities" && (
+              <ul className="absolute top-full left-0 bg-[#2a2a2a] rounded-md shadow-lg py-2 min-w-[180px]">
+                <li><Link href="/facilityimages" className="block px-4 py-2 hover:bg-cyan-600">Images</Link></li>
+                <li><Link href="/facilityvideos" className="block px-4 py-2 hover:bg-cyan-600">Videos</Link></li>
+              </ul>
+            )}
           </li>
 
-          <li
-            className="relative"
-            onMouseEnter={() => handleMouseEnter("blog")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Link href="/contact" className="hover:text-cyan-400 transition-colors">
-              Contact Us
-            </Link>
+          <li>
+            <Link href="/contact" className="hover:text-cyan-400">Contact Us</Link>
           </li>
         </ul>
 
         <div className="flex items-center gap-4 text-white">
-          <a
-            href="tel:+18001234567"
-            className="hidden md:flex font-semibold items-center gap-2 hover:text-cyan-400 transition-colors"
-          >
+          <a href="tel:+18001234567" className="hidden md:flex items-center gap-2 hover:text-cyan-400">
             <PhoneCall className="w-5 h-5 text-cyan-400" />
             <span className="hidden lg:inline">1 (800) 123 4567</span>
           </a>
-          <Search className="w-5 h-5 text-cyan-400 cursor-pointer hover:scale-110 transition-transform" />
+
+          <Search className="w-5 h-5 text-cyan-400 cursor-pointer" />
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden text-white"
-            aria-label="Toggle menu"
+            className="lg:hidden"
           >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#1b1b1b] border-t border-gray-700 max-h-[calc(100vh-80px)] overflow-y-auto">
+        <div className="lg:hidden bg-[#1b1b1b] border-t border-gray-700">
           <ul className="text-white">
-            <li className="border-b border-gray-700">
-              <Link 
-                href="/" 
-                className="block px-6 py-3 hover:bg-[#2a2a2a]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setMobileSubmenuOpen(null);
-                }}
-              >
-                Home
-              </Link>
-            </li>
+            <li><Link href="/" className="block px-6 py-3" onClick={() => setMobileMenuOpen(false)}>Home</Link></li>
+            <li><Link href="/about" className="block px-6 py-3" onClick={() => setMobileMenuOpen(false)}>About Us</Link></li>
 
-            <li className="border-b border-gray-700">
-              <Link 
-                href="/about" 
-                className="block px-6 py-3 hover:bg-[#2a2a2a]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setMobileSubmenuOpen(null);
-                }}
-              >
-                About Us
-              </Link>
-            </li>
-
-            <li className="border-b border-gray-700">
-              <button
-                onClick={() => toggleMobileSubmenu("products")}
-                className="w-full flex justify-between items-center px-6 py-3 hover:bg-[#2a2a2a]"
-              >
-                <span>Products</span>
-                <span>{mobileSubmenuOpen === "products" ? "−" : "+"}</span>
+            <li>
+              <button onClick={() => toggleMobileSubmenu("products")} className="w-full px-6 py-3 flex justify-between">
+                Products <span>{mobileSubmenuOpen === "products" ? "−" : "+"}</span>
               </button>
-
               {mobileSubmenuOpen === "products" && (
                 <ul className="bg-[#2a2a2a]">
-                  <li>
-                    <Link 
-                      href="/marine" 
-                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        setMobileSubmenuOpen(null);
-                      }}
-                    >
-                      Salt Water Fish
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      href="/fresh" 
-                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        setMobileSubmenuOpen(null);
-                      }}
-                    >
-                      Fresh Water Fish
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      href="/plants" 
-                      className="block px-10 py-3 hover:bg-[#3a3a3a]"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        setMobileSubmenuOpen(null);
-                      }}
-                    >
-                      Aquarium Plants
-                    </Link>
-                  </li>
+                  <li><Link href="/marine" className="block px-10 py-3">Salt Water Fish</Link></li>
+                  <li><Link href="/fresh" className="block px-10 py-3">Fresh Water Fish</Link></li>
+                  <li><Link href="/plants" className="block px-10 py-3">Aquarium Plants</Link></li>
                 </ul>
               )}
             </li>
 
-            <li className="border-b border-gray-700">
-              <Link 
-                href="/facilities" 
-                className="block px-6 py-3 hover:bg-[#2a2a2a]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setMobileSubmenuOpen(null);
-                }}
-              >
-                Our Facility
-              </Link>
+            <li>
+              <button onClick={() => toggleMobileSubmenu("facilities")} className="w-full px-6 py-3 flex justify-between">
+                Our Facility <span>{mobileSubmenuOpen === "facilities" ? "−" : "+"}</span>
+              </button>
+              {mobileSubmenuOpen === "facilities" && (
+                <ul className="bg-[#2a2a2a]">
+                  <li><Link href="/facilityimages" className="block px-10 py-3">Images</Link></li>
+                  <li><Link href="/facilityvideos" className="block px-10 py-3">Videos</Link></li>
+                </ul>
+              )}
             </li>
 
-            <li className="border-b border-gray-700">
-              <Link 
-                href="/contact" 
-                className="block px-6 py-3 hover:bg-[#2a2a2a]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setMobileSubmenuOpen(null);
-                }}
-              >
-                Contact
-              </Link>
-            </li>
-
-            <li className="md:hidden">
-              <a
-                href="tel:+18001234567"
-                className="flex items-center gap-2 px-6 py-3 hover:bg-[#2a2a2a]"
-              >
-                <PhoneCall className="w-5 h-5 text-cyan-400" />
-                <span>1 (800) 123 4567</span>
-              </a>
-            </li>
+            <li><Link href="/contact" className="block px-6 py-3">Contact</Link></li>
           </ul>
         </div>
       )}

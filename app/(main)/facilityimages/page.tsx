@@ -6,39 +6,36 @@ import { collection } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 import { Data } from "@/app/types/Dashboard";
 import { fetchFacilitiesByType } from "@/app/firebase/hooks";
+import Image from "next/image";
+
+const staticFacilities = [
+    { id: 1, image: "/Images/ai-generative-head-photo.jpg", name: "Our New Facility Stay connected to global career opportunities anytime, anywhere.", description: "Stay connected to global career opportunities anytime, anywhere. Download our mobile app today whether you’re a job seeker looking for your next role or an employer hiring top international talent.", date: "2025-11-26", facility: "fresh",},
+    { id: 2, image: "/Images/Hero.jpg", name: "Fresh Water Facility", description: "We have a number of collection of fresh water fish gallery", date: "2025-11-18", facility: "fresh",},
+];
 
 export default function FacilityPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [images, setImages] = useState<Data[]>([]);
-    const [videos, setVideos] = useState<Data[]>([]);
-    const [expandedId, setExpandedId] = useState<string | null>(null);
+    const [expandedId, setExpandedId] = useState<number | null>(null);
 
     const collectionRef = collection(db, "facility");
     
     const handleFetch = async () => {
         const images = await fetchFacilitiesByType("image");
         setImages(images);
-        const videos = await fetchFacilitiesByType("video");
-        setVideos(videos);
     }
 
     useEffect(() => {
         handleFetch();
     }, []);
 
-    const filteredImages = images.filter(item => 
+    const filteredImages = staticFacilities.filter(item => 
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (item.description || "").toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const filteredVideos = videos.filter(item => 
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (item.description || "").toLowerCase().includes(searchQuery.toLowerCase())
+        (item.image || "").toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const imageCount = filteredImages.length;
-    const videoCount = filteredVideos.length;
-    const totalCount = images.length + videos.length;
+    const totalCount = images.length;
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-accent-900 via-primary-900 to-accent-900 p-4 md:p-8 relative overflow-hidden">
@@ -82,7 +79,7 @@ export default function FacilityPage() {
                     <div className="mt-4 text-sm text-primary-200">
                         Showing{" "}
                         <span className="font-bold text-primary-300">
-                            {imageCount + videoCount}
+                            {imageCount}
                         </span>{" "}
                         of{" "}
                         <span className="font-bold text-primary-300">{totalCount}</span>{" "}
@@ -124,7 +121,7 @@ export default function FacilityPage() {
                                 >
                                     <div className="relative aspect-video bg-gradient-to-br from-primary-900/50 to-accent-900/50 overflow-hidden">
                                         <img
-                                            src={item.fileUrl}
+                                            src={item.image}
                                             alt={item.name}
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -153,6 +150,7 @@ export default function FacilityPage() {
                                         >
                                             {item.name}
                                         </h3>
+
                                         {item.description && (
                                             <div>
                                                 <p
@@ -163,7 +161,7 @@ export default function FacilityPage() {
                                                     {item.description}
                                                 </p>
 
-                                                {item.description?.length > 80 && (
+                                                {item.description.length > 80 && (
                                                     <button
                                                         onClick={() =>
                                                             setExpandedId(expandedId === item.id ? null : item.id)
@@ -175,106 +173,9 @@ export default function FacilityPage() {
                                                 )}
                                             </div>
                                         )}
-                                        <div className="flex items-center justify-between text-xs text-primary-300">
-                                            <span>{item.date}</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
 
-                <div>
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary-500/20 to-primary-600/20 rounded-lg flex items-center justify-center border border-primary-400/30">
-                            <Film className="w-5 h-5 text-primary-300" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-white">
-                            Video Gallery
-                        </h2>
-                        <div className="ml-auto bg-primary-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-primary-400/30">
-                            <span className="text-primary-200 font-semibold">{videoCount} videos</span>
-                        </div>
-                    </div>
-
-                    {filteredVideos.length === 0 ? (
-                        <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-12 border border-white/20 shadow-2xl text-center">
-                            <div className="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Film className="w-10 h-10 text-primary-300" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-white mb-2">No videos found</h3>
-                            <p className="text-primary-300">
-                                {searchQuery
-                                    ? "Try adjusting your search query"
-                                    : "Start by adding your first video"}
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredVideos.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className="group bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 shadow-2xl hover:shadow-primary-500/30 transition-all duration-300 hover:scale-105 hover:border-primary-400/50"
-                                >
-                                    <div className="relative aspect-video bg-gradient-to-br from-primary-900/50 to-accent-900/50 overflow-hidden">
-                                        <video
-                                            src={item.fileUrl}
-                                            controls
-                                            className="w-full h-full object-cover"
-                                            preload="metadata"
-                                        />
-                                        <div className="absolute top-3 right-3 bg-primary-500/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1 pointer-events-none">
-                                            <Film className="w-3 h-3 text-white" />
-                                            <span className="text-xs font-bold text-white">Video</span>
-                                        </div>
-                                        <div className="absolute top-3 left-3 pointer-events-none">
-                                            <span
-                                                className={`px-3 py-1 rounded-full text-xs font-bold text-white ${
-                                                    item.facility === "fresh"
-                                                        ? "bg-blue-500/90"
-                                                        : "bg-cyan-500/90"
-                                                } backdrop-blur-sm`}
-                                            >
-                                                {item.facility === "fresh" ? "Fresh Water" : "Marine"}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-5">
-                                        <h3
-                                            className={`text-xl font-bold text-white mb-2 transition-all ${
-                                                expandedId === item.id ? "" : "line-clamp-1"
-                                            }`}
-                                        >
-                                            {item.name}
-                                        </h3>
-                                        {item.description && (
-                                            <div>
-                                                <p
-                                                    className={`text-primary-200 text-sm mb-3 transition-all ${
-                                                        expandedId === item.id ? "" : "line-clamp-2"
-                                                    }`}
-                                                >
-                                                    {item.description}
-                                                </p>
-
-                                                {item.description?.length > 80 && (
-                                                    <button
-                                                        onClick={() =>
-                                                            setExpandedId(expandedId === item.id ? null : item.id)
-                                                        }
-                                                        className="text-cyan-400 text-xs font-bold hover:underline"
-                                                    >
-                                                        {expandedId === item.id ? "Show less" : "Read more"}
-                                                    </button>
-                                                )}
-                                            </div>
-                                        )}
-                                        <div className="flex items-center justify-between text-xs text-primary-300">
-                                            <span>{item.date}</span>
-                                            
+                                        <div className="mt-3 text-xs text-primary-300">
+                                            {item.date}
                                         </div>
                                     </div>
                                 </div>
