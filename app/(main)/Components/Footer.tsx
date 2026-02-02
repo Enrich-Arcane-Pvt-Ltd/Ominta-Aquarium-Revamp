@@ -35,7 +35,7 @@ export default function Footer() {
               </li>
               <li >
                 <Link
-                  href="facilities"
+                  href="about"
                   className="text-primary-400 hover:text-primary-300 transition-colors"
                 >
                   Our Facilities
